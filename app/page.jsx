@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import prisma from "../lib/prisma";
 import Post from "./components/Post";
+import Link from "next/link";
 
 async function getPosts() {
   const posts = await prisma.post.findMany({
@@ -20,6 +21,7 @@ export default async function Home() {
   const posts = await getPosts();
   return (
     <main className={styles.main}>
+      <Link href={'/add-post'}>Add Post</Link>
       <h1>Hello Nextjs</h1>
       {posts.map((post) => (
         <Post
